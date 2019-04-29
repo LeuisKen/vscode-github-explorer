@@ -2,8 +2,8 @@
     "name": "github-explorer",
     "displayName": "github-explorer",
     "description": "Github Code explorer",
-    "version": "0.0.1",
-    "publisher": "leuisken",
+    "version": "0.0.2",
+    "publisher": "LeuisKen",
     "engines": {
         "vscode": "^1.33.0"
     },
@@ -11,9 +11,17 @@
         "Other"
     ],
     "activationEvents": [
-        "onCommand:githubExplorer.enterRepository"
+        "onCommand:githubExplorer.enterRepository",
+        "onCommand:githubExplorer.selectRef"
     ],
     "main": "./dist/extension.js",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/LeuisKen/vscode-github-explorer"
+    },
+    "bugs": {
+        "url": "https://github.com/LeuisKen/vscode-github-explorer/issues"
+    },
     "contributes": {
         "configuration": {
             "type": "object",
@@ -53,6 +61,7 @@
         "compile": "webpack --mode none --info-verbosity verbose",
         "watch": "webpack --mode none --watch --info-verbosity verbose",
         "postinstall": "node ./node_modules/vscode/bin/install",
+        "package": "vsce package",
         "test": "yarn run test-compile && node ./node_modules/vscode/bin/test",
         "test-compile": "tsc -p ./"
     },
@@ -64,6 +73,7 @@
         "ts-loader": "^5.3.3",
         "tslint": "^5.12.1",
         "typescript": "^3.3.1",
+        "vsce": "^1.59.0",
         "vscode": "^1.1.28",
         "webpack": "^4.30.0",
         "webpack-cli": "^3.3.0"
