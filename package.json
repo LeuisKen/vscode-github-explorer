@@ -2,7 +2,7 @@
     "name": "github-explorer",
     "displayName": "github-explorer",
     "description": "Github Code explorer",
-    "version": "0.0.2",
+    "version": "0.1.0",
     "publisher": "LeuisKen",
     "license": "MIT",
     "engines": {
