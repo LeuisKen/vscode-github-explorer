@@ -1,0 +1,80 @@
+{
+    "name": "github-explorer",
+    "displayName": "github-explorer",
+    "description": "Github Code explorer",
+    "version": "0.0.1",
+    "publisher": "leuisken",
+    "engines": {
+        "vscode": "^1.33.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onCommand:githubExplorer.enterRepository"
+    ],
+    "main": "./dist/extension.js",
+    "contributes": {
+        "configuration": {
+            "type": "object",
+            "title": "Github explorer configuration",
+            "properties": {
+                "github-explorer.token": {
+                    "type": "string",
+                    "default": "",
+                    "description": "Personal access token of github, you can generate one at https://github.com/settings/tokens."
+                }
+            }
+        },
+        "commands": [
+            {
+                "command": "githubExplorer.enterRepository",
+                "title": "Enter a Github Repository.",
+                "category": "Github Explorer"
+            },
+            {
+                "command": "githubExplorer.selectRef",
+                "title": "Select a Git Ref to checkout.",
+                "category": "Github Explorer"
+            }
+        ],
+        "views": {
+            "explorer": [
+                {
+                    "id": "GithubRepository",
+                    "name": "Github repository",
+                    "when": "githubExplorer:showTreeView"
+                }
+            ]
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "yarn run compile",
+        "compile": "webpack --mode none --info-verbosity verbose",
+        "watch": "webpack --mode none --watch --info-verbosity verbose",
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "yarn run test-compile && node ./node_modules/vscode/bin/test",
+        "test-compile": "tsc -p ./"
+    },
+    "devDependencies": {
+        "@types/lodash": "^4.14.123",
+        "@types/mocha": "^2.2.42",
+        "@types/node": "^10.12.21",
+        "@types/node-fetch": "^2.3.2",
+        "ts-loader": "^5.3.3",
+        "tslint": "^5.12.1",
+        "typescript": "^3.3.1",
+        "vscode": "^1.1.28",
+        "webpack": "^4.30.0",
+        "webpack-cli": "^3.3.0"
+    },
+    "dependencies": {
+        "apollo-boost": "^0.3.1",
+        "apollo-link-http": "^1.5.14",
+        "graphql": "^14.2.1",
+        "graphql-tag": "^2.10.1",
+        "keytar": "^4.6.0",
+        "lodash": "^4.17.11",
+        "node-fetch": "^2.3.0"
+    }
+}

@@ -1,0 +1,35 @@
+# /**
+#  * @file queries
+#  * @author leuisken <leuisken@gmail.com>
+#  */
+
+query GetRepoFileTree(
+    $owner: String!,
+    $name: String!,
+    $expression: String!
+) {
+    repository(owner: $owner, name: $name) {
+        object(expression: $expression) {
+            ... on Tree {
+                entries {
+                    name
+                    type
+                }
+            }
+        }
+    }
+}
+
+query GetRepoFileBlob(
+    $owner: String!,
+    $name: String!,
+    $expression: String!
+) {
+    repository(owner: $owner, name: $name) {
+        object(expression: $expression) {
+            ... on Blob {
+                text
+            }
+        }
+    }
+}
