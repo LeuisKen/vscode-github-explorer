@@ -4,6 +4,7 @@
     "description": "Github Code explorer",
     "version": "0.0.2",
     "publisher": "LeuisKen",
+    "license": "MIT",
     "engines": {
         "vscode": "^1.33.0"
     },
