@@ -38,8 +38,7 @@ class CommandCenter {
 
     @command('githubExplorer.enterRepository')
     async enterRepository() {
-        // @ts-ignore
-        const repository: string = await vscode.window.showInputBox({
+        const repository = await vscode.window.showInputBox({
             prompt: 'Input the repository that you want to explorer, like: facebook/react.',
             validateInput(string) {
                 if (!string) {
@@ -48,6 +47,9 @@ class CommandCenter {
                 return '';
             }
         });
+        if (!repository) {
+            return;
+        }
         context.set('repository', repository);
         context.set('ref', 'HEAD');
         fileTreeView.update();
@@ -55,8 +57,11 @@ class CommandCenter {
 
     @command('githubExplorer.selectRef')
     async selectRef() {
-        // @ts-ignore
-        const ref: string = await vscode.window.showInputBox({
+        if (!context.has('repository')) {
+            vscode.window.showWarningMessage('Please select a repository first.');
+            return;
+        }
+        const ref = await vscode.window.showInputBox({
             prompt: 'Input the ref of repository that you want to explorer, like: master or tags/1.0.0',
             validateInput(string) {
                 if (!string) {
@@ -65,6 +70,9 @@ class CommandCenter {
                 return '';
             }
         });
+        if (!ref) {
+            return;
+        }
         context.set('ref', ref);
         fileTreeView.update();
     }
